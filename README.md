@@ -2,7 +2,7 @@
 
 <strong>EN:</strong>
 This repository aims to be an accumulation of Keyboard Shortcuts and Scripts useful in everyday workflow.
-HotKeys to make easier and cmnfortable the process of building software or simply because I find them useful due to my keyboard layout or specific characteristics of my computer and equipment.<br>
+HotKeys to make easier and confortable the process of building software or simply because I find them useful due to my keyboard layout or specific characteristics of my computer and equipment.<br>
 <strong>Technology:</strong> AutoHotKey
 
 <strong>ES:</strong>

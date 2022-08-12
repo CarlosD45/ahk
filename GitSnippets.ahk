@@ -3,7 +3,35 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-::gstat::git status
-:O:gcom:: git commit -m ""
-::gad:: git add .
+active := false
+branch := ""
 
+::gin::
+    active := true
+    InputBox, branch, Rama Actual, ¿En qué rama estás trabajando?, Locale
+    return
+
+::gst::
+    if(active)
+        Send, git status
+    return
+:O:gcom::
+    if(active)
+        Send, git commit -m ""
+    return
+::gad::
+    if(active)
+        Send, git add .
+    return
+::gpush::
+    if(active)
+        Send, git push origin %branch%
+    return
+::gpul::
+    if(active)
+        Send, git pull origin %branch%
+    return
+::gmer::
+    if(active)
+        Send, git merge
+    return
