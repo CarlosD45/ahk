@@ -9,3 +9,5 @@ HotKeys to make easier and confortable the process of building software or simpl
 Este repositorio pretende ser una acumulación de Atajos de Teclado y Scripts útiles en mi día a día.
 Atajos para hacer más cómodo el proceso de contrucción de software o simplemente por que los encuentro útiles debido a mi distribución de teclado o características específicas de mi computadora y otros equipos.<br>
 <strong>Tecnología:</strong> AutoHotKey
+
+
