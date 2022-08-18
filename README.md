@@ -9,4 +9,4 @@ All the documentation relative to snippets, remaps and hotkeys are included.
 ---
 ## Content
 1. **Basic Git Snippets**  
-2. **Directinal Keys Remap**
+2. **Directional Keys Remap**
