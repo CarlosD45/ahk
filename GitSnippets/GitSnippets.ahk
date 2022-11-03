@@ -21,3 +21,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ::gmer::
     Send, git merge
     return
+::gclon::
+    Send, git clone 
+    Return
