@@ -47,6 +47,13 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
     Send, git pull -u origin 
     Return
 
+;Config
+::gconf::
+    Send, git config --global -e
+    Return
+::gconfl::
+    Send, git config --local -e
+    Return
 
 ; Others
 ::glog::

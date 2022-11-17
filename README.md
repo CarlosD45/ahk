@@ -22,5 +22,8 @@ This script provide a group of **snippets** for making faster and easier work wi
 |gpush      |*git push <$>*             | Remote ID & Branch ID |
 |gclon      |*git clone <$>*            | Remote ID & Branch ID |
 |gset       |*git pull -u origin <#>*   | Branch ID             |
+|**Configuration**                                              |
+|gconf      |*git config --global -e*   |                       |
+|gconfl     |*git config --local -e*    |                       |
 |**Others**                                                     |
 |glog       |*git log --oneline*        |                       |
