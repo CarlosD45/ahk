@@ -18,10 +18,12 @@ This script provide a group of **snippets** for making faster and easier work wi
 |gmer       |*git merge <#>*            | Branch ID             |
 |**Remote**                                                     |
 |gft        |*git fetch <@> <@>*        | Remote ID & Branch ID |
-|gpul       |*git pull <$>*             | Remote ID & Branch ID |
-|gpush      |*git push <$>*             | Remote ID & Branch ID |
-|gclon      |*git clone <$>*            | Remote ID & Branch ID |
-|gset       |*git pull -u origin <#>*   | Branch ID             |
+|gpul       |*git pull <@> <@>*         | Remote ID & Branch ID |
+|gpush      |*git push <@> <@>*         | Remote ID & Branch ID |
+|gclon      |*git clone <#>*            | Link of remote repo   |
+|grm        |*git remote*               |                       |
+|grmad      |*git remote add <@>*       | Link of remote repo   |
+|gset       |*git push -u origin <#>*   | Branch ID             |
 |**Configuration**                                              |
 |gconf      |*git config --global -e*   |                       |
 |gconfl     |*git config --local -e*    |                       |

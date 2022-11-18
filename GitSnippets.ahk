@@ -40,11 +40,14 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ::gclon::
     Send, git clone 
     Return
+::grm::
+    Send, git remote
+    Return
 ::grmad::
     Send git remote add
     Return
 ::gset::
-    Send, git pull -u origin 
+    Send, git push -u origin 
     Return
 
 ;Config
