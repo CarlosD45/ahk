@@ -1,3 +1,4 @@
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
 # Git Snippets
 
 This script provide a group of **snippets** for making faster and easier work with **Git** in a **Terminal**. After you type the snippet just press **Space** and the right **Git Command** will be typed.
