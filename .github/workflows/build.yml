@@ -1,0 +1,49 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Realease
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "master" branch
+  pull_request:
+    branches: [ "release" ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  release:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      
+      - name: Compile AutoHotkey Script
+        # You may pin to the exact commit or the version.
+        # uses: CEnnis91/action-ahk2exe@63ab272019e200d66214d0c2fbf293e9521fa8b7
+        uses: CEnnis91/action-ahk2exe@v1.0.0
+        with:
+          # The path and name of the script to compile.
+          in: source/GitSnippets.ahk
+          # The path\name of the output .exe to be created. Default is the directory\base_name of the input file plus extension of .exe.
+          out: build/git-snippets.exe
+          # The icon file to be used.
+          icon: Icons/'Git Snippets.ico'
+          
+      - name: Automatic Releases
+        # You may pin to the exact commit or the version.
+        # uses: marvinpinto/action-automatic-releases@919008cf3f741b179569b7a6fb4d8860689ab7f0
+        uses: marvinpinto/action-automatic-releases@v1.2.1
+        with:
+          # GitHub secret token
+          repo_token: secrets.repo_token
+          # Should this release be marked as a draft?
+          draft: false
+          # Should this release be marked as a pre-release?
+          prerelease: false
+          # Release title (for automatic releases)
+          title: Git Snippets
+          # Assets to upload to the release
+          files: build/git-snippets.exe
