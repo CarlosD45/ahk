@@ -17,13 +17,13 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ; Branching
 ::gsw::
-    Send, git switch"
+    Send, git switch" 
     Return
 ::gbr::
-    Send, git branch
+    Send, git branch 
     Return
 ::gmer::
-    Send, git merge
+    Send, git merge 
     return
 
 
@@ -44,7 +44,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
     Send, git remote
     Return
 ::grmad::
-    Send git remote add
+    Send git remote add 
     Return
 ::gset::
     Send, git push -u origin 
