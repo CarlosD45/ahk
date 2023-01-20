@@ -22,14 +22,71 @@
  * THE SOFTWARE.
  */
 
-// Program
-#include <gippets/Application.h>
+/* 
+ * File:   Component.cc
+ * Author: Javier Marrero
+ * 
+ * Created on January 19, 2023, 11:49 PM
+ */
 
-// C++
-#include <cstdlib>
-#include <memory>
+#include <gippets/Component.h>
 
-int main(int argc, char** argv)
+using namespace gippets;
+
+Component::Component()
+:
+m_x(0),
+m_y(0),
+m_width(0),
+m_height(0)
 {
-    return gippets::Application().mainloop();
 }
+
+Component::Component(int x, int y, int width, int height)
+:
+m_x(x),
+m_y(y),
+m_width(width),
+m_height(height),
+m_parent(nullptr)
+{
+}
+
+Component::~Component()
+{
+}
+
+void Component::add(std::shared_ptr<Component>&& component)
+{
+    // Set this as the parent
+    component->m_parent = this;
+    m_children.push_back(component);
+}
+
+void Component::draw(Console& console) const
+{
+    this->moveCursorToOrigin(console);
+    for (std::shared_ptr<Component> component : m_children)
+    {
+        component->draw(console);
+    }
+}
+
+void Component::moveCursorToOrigin(Console& console) const
+{
+    int x = m_x;
+    int y = m_y;
+
+    Component* mcp = m_parent;
+    while (mcp != nullptr)
+    {
+        x += mcp->m_x;
+        y += mcp->m_y;
+
+        mcp = mcp->m_parent;
+    }
+    console.moveCursorToLocation(x, y);
+}
+
+
+

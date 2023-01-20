@@ -23,26 +23,24 @@
  */
 
 /* 
- * File:   Window.cc
+ * File:   Frame.cc
  * Author: Javier Marrero
  * 
- * Created on January 19, 2023, 7:45 PM
+ * Created on January 20, 2023, 3:04 AM
  */
 
-#include <gippets/Window.h>
+#include <gippets/Frame.h>
 
 using namespace gippets;
 
-Window::Window(int x, int y, int w, int h)
+Frame::Frame(int width, int height, int x, int y)
 :
-m_localWindow(newwin(h, w, x, y))
+Component(x, y, width, height)
 {
-    box(m_localWindow, 0, 0);
-    wrefresh(m_localWindow);
 }
 
-Window::~Window()
+Frame::~Frame()
 {
-    delwin(m_localWindow);
 }
+
 

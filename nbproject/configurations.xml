@@ -5,9 +5,11 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>includes/gippets/Application.h</itemPath>
+      <itemPath>includes/gippets/Component.h</itemPath>
       <itemPath>includes/gippets/Console.h</itemPath>
+      <itemPath>includes/gippets/Frame.h</itemPath>
       <itemPath>includes/gippets/GitCommand.h</itemPath>
-      <itemPath>includes/gippets/Window.h</itemPath>
+      <itemPath>includes/gippets/Label.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -18,9 +20,11 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>sources/Application.cc</itemPath>
+      <itemPath>sources/console/Component.cc</itemPath>
       <itemPath>sources/console/Console.cc</itemPath>
+      <itemPath>sources/console/Frame.cc</itemPath>
       <itemPath>sources/git/GitCommand.cc</itemPath>
-      <itemPath>sources/console/Window.cc</itemPath>
+      <itemPath>sources/console/Label.cc</itemPath>
       <itemPath>sources/main.cc</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -37,7 +41,7 @@
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
-    <conf name="Debug" type="1">
+    <conf name="Debug-W32" type="1">
       <toolsSet>
         <compilerSet>default</compilerSet>
         <dependencyChecking>true</dependencyChecking>
@@ -55,24 +59,32 @@
         <linkerTool>
           <additionalDep>build/resources/resources.res</additionalDep>
           <linkerLibItems>
-            <linkerOptionItem>`pkg-config --libs ncursesw`</linkerOptionItem>
+            <linkerOptionItem>-static</linkerOptionItem>
           </linkerLibItems>
           <commandLine>build/resources/resources.res</commandLine>
         </linkerTool>
       </compileType>
       <item path="includes/gippets/Application.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="includes/gippets/Component.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="includes/gippets/Console.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="includes/gippets/Frame.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="includes/gippets/GitCommand.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="includes/gippets/Window.h" ex="false" tool="3" flavor2="0">
+      <item path="includes/gippets/Label.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="sources/Application.cc" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="sources/console/Component.cc" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="sources/console/Console.cc" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="sources/console/Window.cc" ex="false" tool="1" flavor2="0">
+      <item path="sources/console/Frame.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sources/console/Label.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="sources/git/GitCommand.cc" ex="false" tool="1" flavor2="0">
       </item>
@@ -86,7 +98,7 @@
         </customTool>
       </item>
     </conf>
-    <conf name="Release" type="1">
+    <conf name="Release-W32" type="1">
       <toolsSet>
         <compilerSet>default</compilerSet>
         <dependencyChecking>true</dependencyChecking>
@@ -97,7 +109,7 @@
           <developmentMode>5</developmentMode>
         </cTool>
         <ccTool>
-          <developmentMode>5</developmentMode>
+          <developmentMode>6</developmentMode>
           <standard>11</standard>
           <incDir>
             <pElem>includes</pElem>
@@ -114,24 +126,32 @@
         <linkerTool>
           <additionalDep>build/resources/resources.res</additionalDep>
           <linkerLibItems>
-            <linkerOptionItem>`pkg-config --libs ncursesw`</linkerOptionItem>
+            <linkerOptionItem>-static</linkerOptionItem>
           </linkerLibItems>
           <commandLine>build/resources/resources.res</commandLine>
         </linkerTool>
       </compileType>
       <item path="includes/gippets/Application.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="includes/gippets/Component.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="includes/gippets/Console.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="includes/gippets/Frame.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="includes/gippets/GitCommand.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="includes/gippets/Window.h" ex="false" tool="3" flavor2="0">
+      <item path="includes/gippets/Label.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="sources/Application.cc" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="sources/console/Component.cc" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="sources/console/Console.cc" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="sources/console/Window.cc" ex="false" tool="1" flavor2="0">
+      <item path="sources/console/Frame.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sources/console/Label.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="sources/git/GitCommand.cc" ex="false" tool="1" flavor2="0">
       </item>

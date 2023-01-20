@@ -30,31 +30,100 @@
  */
 
 #include <gippets/Console.h>
-#include <ncurses/ncurses.h>
 
 // C++
-#include <utility>
+#include <cstdio>
+#include <stdexcept>
+#include <wchar.h>
+
+#ifdef _WIN32
+#    ifndef ENABLE_VIRTUAL_TERMINAL_PROCESSING
+#        define ENABLE_VIRTUAL_TERMINAL_PROCESSING 0x0004
+#    endif
+#endif
 
 using namespace gippets;
 
 Console::Console()
 {
-    initscr();              // Start ncurses mode
-    cbreak();               // Disable buffering
-    keypad(stdscr, TRUE);   // We need that nifty F1, F2, F3...   
+    /*
+     * If we are under Windows, get the handles and all that stuff
+     */
+#ifdef _WIN32
+    m_stdoutHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+#endif
+
+    /*
+     * Query number of lines and columns
+     */
+#ifdef _WIN32
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+
+    GetConsoleScreenBufferInfo(m_stdoutHandle, &csbi);
+    m_columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+    m_lines = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+#endif
+
+    /**
+     * Enable ANSI Terminal Scape Code Processing
+     */
+#ifdef _WIN32
+    DWORD outMode = 0;
+
+    if (m_stdoutHandle == INVALID_HANDLE_VALUE)
+    {
+        throw std::runtime_error("invalid handle value");
+    }
+
+    if (!GetConsoleMode(m_stdoutHandle, &outMode))
+    {
+        throw std::runtime_error("invalid console mode.");
+    }
+
+    m_outModeInit = outMode;
+    outMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+
+    if (!SetConsoleMode(m_stdoutHandle, outMode))
+    {
+        throw std::runtime_error("unable to set console mode.");
+    }
+#endif
+
 }
 
 Console::~Console()
 {
-    endwin();
+    std::wprintf(L"\033[0m");
+
+#ifdef _WIN32
+    if (!SetConsoleMode(m_stdoutHandle, m_outModeInit))
+    {
+        exit(GetLastError());
+    }
+#endif
 }
 
-Console::point_t Console::getCenterCoordinate()
+void Console::clear()
 {
-    int x = LINES / 2;
-    int y = COLS / 2;
-
-    return std::make_pair(x, y);
+#ifdef _WIN32
+    DWORD   written     = 0;
+    PCWSTR  sequence    = L"\x1b[2J";
+    WriteConsoleW(m_stdoutHandle, sequence, (DWORD) std::wcslen(sequence), &written, NULL);
+#endif
 }
 
+void Console::drawText(const wchar_t* data)
+{
+    std::wprintf(data);
+}
 
+void Console::moveCursorToLocation(int x, int y)
+{
+    wchar_t sequence[64] = {0};
+    std::swprintf(sequence, L"\033[%d;%df", y, x);
+}
+
+void Console::issueCommand(const wchar_t* sequence)
+{
+    std::wprintf(sequence);
+}

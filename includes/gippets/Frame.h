@@ -22,14 +22,33 @@
  * THE SOFTWARE.
  */
 
-// Program
-#include <gippets/Application.h>
+/* 
+ * File:   Frame.h
+ * Author: Javier Marrero
+ *
+ * Created on January 20, 2023, 3:04 AM
+ */
 
-// C++
-#include <cstdlib>
-#include <memory>
+#ifndef __FRAME_H__
+#define __FRAME_H__
 
-int main(int argc, char** argv)
+// Git-Snippets
+#include <gippets/Component.h>
+
+namespace gippets
 {
-    return gippets::Application().mainloop();
+
+class Frame : public Component
+{
+public:
+
+    Frame(int width = 0, int height = 0, int x = 0, int y = 0);
+    virtual ~Frame();
+
+    
+} ;
+
 }
+
+#endif /* FRAME_H */
+

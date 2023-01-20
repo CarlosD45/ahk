@@ -22,14 +22,52 @@
  * THE SOFTWARE.
  */
 
-// Program
-#include <gippets/Application.h>
+/* 
+ * File:   Component.h
+ * Author: Javier Marrero
+ *
+ * Created on January 19, 2023, 11:49 PM
+ */
+
+#ifndef __COMPONENT_H__
+#define __COMPONENT_H__
 
 // C++
-#include <cstdlib>
 #include <memory>
+#include <vector>
 
-int main(int argc, char** argv)
+// Git-Snippets
+#include <gippets/Console.h>
+
+namespace gippets
 {
-    return gippets::Application().mainloop();
+
+class Component
+{
+public:
+
+    Component();
+    Component(int x, int y, int width, int height);
+
+    virtual ~Component();
+
+    void            add(std::shared_ptr<Component>&& component);
+    virtual void    draw(Console& console) const;
+    void            moveCursorToOrigin(Console& console) const;
+
+protected:
+
+    int m_x;
+    int m_y;
+    int m_width;
+    int m_height;
+
+    std::vector<std::shared_ptr<Component> >    m_children;
+    Component*                                  m_parent;
+
+} ;
+
 }
+
+#endif /* COMPONENT_H */
+

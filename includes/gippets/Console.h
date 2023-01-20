@@ -32,33 +32,61 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
-// NCurses
-#include <ncursesw/ncurses.h>
-
 // C++
 #include <utility>
 
+// Windows
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 namespace gippets
 {
+
+#define ANSI_CLEAR          L"\033[0m"
+#define ANSI_BOLD           L"\033[1m"
+#define ANSI_NO_BOLD        L"\033[22m"
+#define ANSI_UNDERLINE      L"\033[4m"
+#define ANSI_NO_UNDERLINE   L"\033[24m"
+#define ANSI_ITALIC         L"\033[3m"
+#define ANSI_NO_ITALIC      L"\033[23m"
+#define ANSI_DIM            L"\033[2m"
+#define ANSI_NO_DIM         L"\033[22m"
+
+#define ANSI_FG_COLOR(ID)   L"\033[38;5;" #ID "m"
 
 class Console
 {
 public:
 
-    typedef std::pair<int, int> point_t;
-
     Console();
     ~Console();
 
-    /**
-     * Returns a point object that contains the coordinates to the center of the screen.
-     *
-     * @return
-     */
-    point_t getCenterCoordinate();
+    inline int getColumns() const
+    {
+        return m_columns;
+    }
+
+    inline int getLines() const
+    {
+        return m_lines;
+    }
+
+    void clear();
+    void drawText(const wchar_t* data);
+    void issueCommand(const wchar_t* sequence);
+    void moveCursorToLocation(int x, int y);
 
 private:
 
+#    ifdef _WIN32
+    HANDLE  m_stdoutHandle;
+    DWORD   m_outModeInit;
+#    endif
+
+    int m_columns;
+    int m_lines;
+    
 } ;
 
 }

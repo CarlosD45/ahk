@@ -30,35 +30,83 @@
  */
 
 #include <gippets/Application.h>
-#include <ncursesw/ncurses.h>
+
+// C++
+#include <cstdlib>
+#include <string>
+#include <iostream>
+#include <wchar.h>
 
 using namespace gippets;
 
-const char* const Application::APPLICATION_NAME = "Git-Snippets v0.2";
+const wchar_t* const Application::APPLICATION_NAME = L"Git-Snippets v0.2";
 
 Application::Application()
 :
 m_console(new Console())
 {
+    // Initialize the screen
+    initComponents();
 }
 
 Application::~Application()
 {
 }
 
-void Application::initComponents()
+void Application::error(const wchar_t* message)
 {
-    m_window = std::make_shared<Window>(0, 0, 10, 50);
-
-    printw("hi");
+    m_console->issueCommand(ANSI_FG_COLOR(203) ANSI_BOLD L"error: " ANSI_CLEAR);
+    m_console->drawText(message);
+    m_console->drawText(L"\n");
 }
 
-void Application::run()
+void Application::initComponents()
+{
+    m_mainViewport = std::make_shared<Frame>(m_console->getColumns(), m_console->getLines());
+
+    // Print the initial text
+    m_mainViewport->moveCursorToOrigin(*m_console);
+    m_console->drawText(L"Git-Snippets v0.2\n");
+    m_console->drawText(ANSI_FG_COLOR(198) ANSI_BOLD L":: Welcome to Git-Snippets!\n" ANSI_CLEAR);
+    m_console->drawText(ANSI_BOLD "Type Ctrl+Z for exit, help for help, and other commands as specified in the help page...\n\n" ANSI_NO_BOLD);
+
+}
+
+int Application::mainloop()
 {
     while (true)
     {
-        refresh();
+        // Get input
+        prompt();
+
+        std::wstring input;
+        std::getline(std::wcin, input);
+
+        // Process the input message
+        if (input == L"q" || input == L"quit")
+        {
+            return EXIT_SUCCESS;
+        }
+        else
+        {
+            if (input != L"")
+            {
+                wchar_t buffer[0x400] = {0};
+                std::swprintf(buffer, L"unrecognized command: %S", input.c_str());
+
+                error(buffer);
+            }
+        }
+
+        // Redraw
+        m_mainViewport->draw(*m_console);
     }
+    return EXIT_SUCCESS;
+}
+
+void Application::prompt()
+{
+    m_console->drawText(ANSI_FG_COLOR(45) ANSI_BOLD "> " ANSI_CLEAR);
 }
 
 

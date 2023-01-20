@@ -34,7 +34,7 @@
 
 // Git-Snippets
 #include <gippets/Console.h>
-#include <gippets/Window.h>
+#include <gippets/Frame.h>
 
 // C++
 #include <memory>
@@ -49,20 +49,19 @@ public:
     Application();
     ~Application();
 
-    void initComponents();
-
-    /**
-     * Infinite loops go brrr...
-     */
-    void run();
+    void    error(const wchar_t* message);
+    void    initComponents();
+    int     mainloop();
 
 private:
 
-    static const char* const APPLICATION_NAME;
+    static const wchar_t* const APPLICATION_NAME;
+    static const wchar_t* const APPLICATION_LOGO;
 
     std::shared_ptr<Console>    m_console;
-    std::shared_ptr<Window>     m_window;
+    std::shared_ptr<Frame>      m_mainViewport;
 
+    void prompt();
 } ;
 
 }

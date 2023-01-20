@@ -22,14 +22,50 @@
  * THE SOFTWARE.
  */
 
-// Program
-#include <gippets/Application.h>
+/* 
+ * File:   Label.h
+ * Author: Javier Marrero
+ *
+ * Created on January 20, 2023, 2:44 AM
+ */
+
+#ifndef __LABEL_H__
+#define __LABEL_H__
+
+// Git-Snippets
+#include <gippets/Component.h>
 
 // C++
-#include <cstdlib>
-#include <memory>
+#include <string>
 
-int main(int argc, char** argv)
+namespace gippets
 {
-    return gippets::Application().mainloop();
+
+class Label : public Component
+{
+public:
+
+    Label(int w = 0, int h = 0, int x = 0, int y = 0, const std::wstring& text = L"");
+    virtual ~Label();
+
+    void draw(Console& console) const override;
+
+    inline const std::wstring& getText() const
+    {
+        return m_text;
+    }
+
+    inline void setText(std::wstring&& text)
+    {
+        m_text = text;
+    }
+
+private:
+
+    std::wstring m_text;
+} ;
+
 }
+
+#endif /* LABEL_H */
+

@@ -23,34 +23,34 @@
  */
 
 /* 
- * File:   Window.h
+ * File:   Label.cc
  * Author: Javier Marrero
- *
- * Created on January 19, 2023, 7:45 PM
+ * 
+ * Created on January 20, 2023, 2:44 AM
  */
 
-#ifndef __WINDOW_H__
-#define __WINDOW_H__
+#include <gippets/Label.h>
 
-// Curses
-#include <ncursesw/ncurses.h>
+using namespace gippets;
 
-namespace gippets
+Label::Label(int w, int h, int x, int y, const std::wstring& text)
+:
+Component(x, y, w, h),
+m_text(text)
 {
-
-class Window
-{
-public:
-
-    Window(int x, int y, int w, int h);
-    ~Window();
-
-private:
-
-    WINDOW* m_localWindow;
-} ;
-
 }
 
-#endif /* WINDOW_H */
+Label::~Label()
+{
+}
+
+void Label::draw(Console& console) const
+{
+    console.drawText(m_text.data());
+    Component::draw(console);
+}
+
+
+
+
 
