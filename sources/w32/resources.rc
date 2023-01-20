@@ -1,0 +1,26 @@
+A ICON DISCARDABLE "icons/git-snippets.ico"
+
+1 VERSIONINFO
+FILEVERSION     1,0,0,0
+PRODUCTVERSION  1,0,0,0
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904E4"
+    BEGIN
+      VALUE "CompanyName", "Carlitos Productions"
+      VALUE "FileDescription", "Git snippets for everyone!"
+      VALUE "FileVersion", "0.2"
+      VALUE "InternalName", "git-snippets"
+      VALUE "LegalCopyright", "Copyright (C) 2022, "
+      VALUE "OriginalFilename", "git-snippets.exe"
+      VALUE "ProductName", "Git Snippets"
+      VALUE "ProductVersion", "0.2"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1252
+  END
+END
+
